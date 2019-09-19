@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Гражданское дело</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/new_form.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--uiSelect-->
+    <link rel="stylesheet" href="css/ui-select/select2.css">
+    <link rel="stylesheet" href="css/ui-select/selectize.default.css">
+    <link rel="stylesheet" href="css/ui-select/select.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!--uiSelect-->
+
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/ui-bootstrap.js"></script>
+    <script src="controllers/index.js"></script>
+    <script src="controllers/new_form.js"></script>
+    <script src="controllers/civil.js"></script>
+    <script src="Scripts/jquery-2.2.1.js"></script>
+
+    <script src="Scripts/angular-sanitize.js"></script>
+    <script src="Scripts/angular-route.js"></script>
+
+    <!--uiSelect-->
+    <script src="Scripts/ui-select/select.min.js"></script>
+    <!--uiSelect-->
+
+
+    <!--FileSaver-->
+    <script src="Scripts/FileSaver.js"></script>
+
+
+<!--    <script src="js/yandexMetrics.js"></script>-->
+    <script>
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(53897173, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/53897173" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
+
+    <script src="Scripts/zingchart.min.js"></script>
+
+
+</head>
+<body ng-controller="newFormCtrl">
+
+
+<div class="container-fluid civil">
+    <div class="row">
+        <h2 class="text-center title" style="display: none;">ПРОВЕРКА ПРИГОВОРА</h2>
+        <div class="formCivil">
+            <form>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-12 text-center" style="padding: 8px; ">
+                            <img src="img/logo.png" alt="logo" style="width: 120px">
+                        </div>
+                        <!--<div class="col-sm-12" style="text-align: center">
+                            <p class="titleCivil">Проверка решений суда</p>
+                        </div>-->
+
+
+                    </div>
+                </div>
+
+                <div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label class="control-label">Номер гражданского дела<span class="required">*</span></label>
+                            <input ng-model="item.case_number" type="number" class="form-control"
+                                   placeholder="Номер дела">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>От</label>
+                            <input class="form-control" data-format="dd.MM.yyyy" ng-model="item.date_from" type="date"
+                                   required>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label>До</label>
+                            <input class="form-control" data-format="dd.MM.yyyy" ng-model="item.date_to" type="date"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="control-label">Cуд</label><br>
+                            <select required ng-options="court.id as court.courtName for court in courts"
+                                    class="form-control" ng-model="item.court"
+                                    style="height: 34px; width: 100%">
+                                <option selected disabled value="" ng-show="false"></option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="control-label">Категория дела</label><br>
+<!--                            <select required ng-options="cat.id as cat.categoryName for cat in category"-->
+                            <select required ng-options="cat.id as cat.name for cat in caseCategories.result"
+                                    class="form-control" ng-model="item.case_category"
+                                    style="height: 34px; width: 100%">
+                                <option selected disabled value="" ng-show="false"></option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="control-label">Результат рассмотрения</label><br>
+                            <select required ng-options="res.id as res.categoryName for res in results"
+                                    class="form-control" ng-model="item.review_result"
+                                    style="height: 34px; width: 100%">
+                                <option selected disabled value="" ng-show="false"></option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="control-label">Судья</label>
+                            <input ng-model="item.judge" type="text" class="form-control">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="control-label">Истец</label>
+                            <input ng-model="item.plaintiff" type="text" class="form-control">
+
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="control-label">Ответчик</label>
+                            <input ng-model="item.defendant" type="text" class="form-control">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label class="control-label">Текст решения содержит</label>
+                            <input ng-model="item.result_text_has" type="text" class="form-control"
+                                   placeholder="введеный текст через пробел">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="radio">
+                                <label><input ng-model="item.phrase_rule_type" value="1" type="radio" name="optradio"
+                                              checked>любое
+                                    из перечисленных слов</label>
+                            </div>
+                            <div class="radio">
+                                <label><input ng-model="item.phrase_rule_type" value="2" type="radio" name="optradio">все
+                                    перечисленные слова</label>
+                            </div>
+                            <div class="radio">
+                                <label><input ng-model="item.phrase_rule_type" value="3" type="radio" name="optradio">полностью
+                                    фразу</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label class="control-label">Текст решения не должен содержать слова</label>
+                            <input ng-model="item.result_text_not_has" type="text" class="form-control"
+                                   placeholder="отрицательные слова">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <button style="margin-top: 10px"
+                                    ng-click="sendResultCivil(item)"
+                                    class="btn btn-lg btn-primary">
+                                Найти
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="myModalCivil.html">
+
+    <div class="modal-content modal-xl">
+        <div class="modal-header">
+            <button style="margin: 6px" type="button" class="close" ng-click="cancel()"><span
+                    aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="exampleModalLabel">Результат анализа</h4>
+
+        </div>
+
+        <div class="modal-body">
+
+            <!-- Preloader -->
+            <div ng-show="loader" id="Load" class="load">
+                <div class="load__container">
+                    <div class="load__animation"></div>
+                    <div class="load__mask"></div>
+                    <span class="load__title">Carregando...</span>
+                </div>
+            </div>
+
+            <table class="table">
+                <thead style="background: cadetblue" class="thead-dark">
+                <tr>
+                    <th>Номер дела</th>
+                    <th>Наименование суда</th>
+                    <th>Результат рассмотрения</th>
+                    <th>Истец</th>
+                    <th>Ответчик</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in tableData.result">
+                    <td>{{item.case_number}}</td>
+                    <td>{{item.court_name}}</td>
+                    <td>{{item.review_result}}</td>
+                    <td>{{item.plaintiff}}</td>
+                    <td>{{item.defendant}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+        </div>
+        <br>
+        <div class="modal-footer">
+            <button class="btn btn-danger" ng-click="cancel()">Закрыть</button>
+        </div>
+
+    </div>
+
+</script>
+
+
+<script src="js/input.js"></script>
+<script src="js/inputFile.js"></script>
+<script src="js/filterable.js"></script>
+<script src="js/getYandexMetric.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+.filterable{
+    background-color: cadetblue;
+}
+
+
+.select2 > .select2-choice.ui-select-match {
+    /* Because of the inclusion of Bootstrap */
+    height: 29px;
+}
+
+.selectize-control > .selectize-dropdown {
+    top: 36px;
+}
+
+
+.zc-ref {
+    display: none;
+}
+
+zing-grid[loading] {
+    height: 800px;
+}
+
+.background {
+    margin: 0;
+}
+
+.alert {
+    width: fit-content;
+    padding: 6px 12px;
+    display: inline-block;
+}
+
+.formCivil {
+    max-width: 581px;
+    width: 100%;
+    min-height: 657px;
+    height: 100%;
+    padding: 5px 20px;
+    border-radius: 5px;
+    margin: 20px auto 40px auto !important;
+    background-color: rgba(30, 31, 29, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.row {
+    margin-bottom: 5px;
+}

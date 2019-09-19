@@ -17,6 +17,9 @@ angular.module('app').config(function ($routeProvider) {
         .when("/controllers/civil", {
             templateUrl: "civil.html"
         })
+        .when("/controllers/new_form", {
+            templateUrl: "new_form.html"
+        })
 
         .otherwise({redirectTo: '/'});
 });

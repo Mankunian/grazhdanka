@@ -255,10 +255,10 @@ input[type=checkbox]:checked + label:before {
 
 /* Large */
 @media (min-width: 2053px) {
-    .main {
+    .civil {
         /*background-image: url("../img/background.jpg");*/
         /*background-image: url("../img/1.jpg");*/
-        background-image: url("../img/2.png");
+        background-image: url("../img/441.png");
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -300,7 +300,7 @@ input[type=checkbox]:checked + label:before {
 
 /*Table*/
 
-.filterable {
+/*.filterable {
     margin-top: 15px;
 }
 
@@ -327,7 +327,7 @@ input[type=checkbox]:checked + label:before {
 
 .filterable .filters input[disabled]:-ms-input-placeholder {
     color: #333;
-}
+}*/
 
 
 /*table*/
@@ -471,7 +471,7 @@ li a:hover {
     background-size: contain;
 }
 
-table th{
+/*table th{
     border-bottom: 5px solid #F0AE24;
 }
 
@@ -486,7 +486,7 @@ tbody tr{
 
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
     border-top: 4px solid #ffffff;
-}
+}*/
 
 
 
@@ -555,11 +555,8 @@ tbody tr{
 
 @media only screen  and (min-width : 1824px) {
     /* Styles */
-    .main {
-        /*background-image: url("../img/background.jpg");*/
-        /*background-image: url("../img/1.jpg");*/
-        /*background-image: url("../img/2.png");*/
-        background-image: url("../img/3.jpg");
+    .civil {
+        background-image: url("../img/441.jpg");
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
