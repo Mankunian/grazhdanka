@@ -46,3 +46,17 @@ zing-grid[loading] {
 .row {
     margin-bottom: 5px;
 }
+
+
+.ui-select-bootstrap>.ui-select-choices, .ui-select-bootstrap>.ui-select-no-choice{
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    overflow-y: scroll;
+    margin-top: -1px;
+}
+
+
+.ui-select-choices .ui-select-choices-content .ui-select-dropdown .dropdown-menu{
+    width: 500px;
+}

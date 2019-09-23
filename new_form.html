@@ -38,7 +38,7 @@
     <script src="Scripts/FileSaver.js"></script>
 
 
-<!--    <script src="js/yandexMetrics.js"></script>-->
+    <!--    <script src="js/yandexMetrics.js"></script>-->
     <script>
         (function (m, e, t, r, i, k, a) {
             m[i] = m[i] || function () {
@@ -78,11 +78,6 @@
                         <div class="col-sm-12 text-center" style="padding: 8px; ">
                             <img src="img/logo.png" alt="logo" style="width: 120px">
                         </div>
-                        <!--<div class="col-sm-12" style="text-align: center">
-                            <p class="titleCivil">Проверка решений суда</p>
-                        </div>-->
-
-
                     </div>
                 </div>
 
@@ -90,43 +85,55 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label class="control-label">Номер гражданского дела<span class="required">*</span></label>
-                            <input ng-model="item.case_number" type="number" class="form-control"
+                            <input ng-model="item.case_number" type="text" class="form-control"
                                    placeholder="Номер дела">
-
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-sm-6">
                             <label>От</label>
-                            <input class="form-control" data-format="dd.MM.yyyy" ng-model="item.date_from" type="date"
-                                   required>
+                            <input class="form-control" data-format="dd.MM.yyyy" ng-model="dateModel.date_from" type="date">
                         </div>
 
                         <div class="col-sm-6">
                             <label>До</label>
-                            <input class="form-control" data-format="dd.MM.yyyy" ng-model="item.date_to" type="date"
-                                   required>
+                            <input class="form-control" data-format="dd.MM.yyyy" ng-model="dateModel.date_to" type="date">
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-6">
-                            <label class="control-label">Cуд</label><br>
-                            <select required ng-options="court.id as court.courtName for court in courts"
-                                    class="form-control" ng-model="item.court"
-                                    style="height: 34px; width: 100%">
-                                <option selected disabled value="" ng-show="false"></option>
-                            </select>
-                        </div>
+
                         <div class="col-sm-6">
                             <label class="control-label">Категория дела</label><br>
-<!--                            <select required ng-options="cat.id as cat.categoryName for cat in category"-->
-                            <select required ng-options="cat.id as cat.name for cat in caseCategories.result"
+                            <!--<select required ng-options="cat.id as cat.name for cat in caseCategories.result"
                                     class="form-control" ng-model="item.case_category"
                                     style="height: 34px; width: 100%">
                                 <option selected disabled value="" ng-show="false"></option>
-                            </select>
+                            </select>-->
+                            <ui-select tagging tagging-label="('new')" ng-model="item.category" theme="bootstrap">
+                                <ui-select-match placeholder="Выберите категорию..."><span>{{$select.selected.name}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="cat in caseCategories.result | filter: $select.search">
+                                    <div ng-bind-html="cat.name"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="control-label">Cуд</label><br>
+                            <!--<select required ng-options="court.id as court.name for court in courts.result"
+                                    class="form-control" ng-model="item.court"
+                                    style="height: 34px; width: 100%">
+                                <option selected disabled value="" ng-show="false"></option>
+                            </select>-->
+
+                            <ui-select tagging tagging-label="('new')" ng-model="item.court" theme="bootstrap">
+                                <ui-select-match placeholder="Выберите суд..."><span>{{$select.selected.name}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="court in courts.result | filter: $select.search">
+                                    <div ng-bind-html="court.name"></div>
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
                     </div>
 
@@ -134,11 +141,18 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label class="control-label">Результат рассмотрения</label><br>
-                            <select required ng-options="res.id as res.categoryName for res in results"
+                            <ui-select tagging tagging-label="('new')" ng-model="item.result" theme="bootstrap">
+                                <ui-select-match placeholder="Выберите результат..."><span>{{$select.selected.name}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="court in reviewResults.result | filter: $select.search">
+                                    <div ng-bind-html="court.name"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                            <!--select required ng-options="res.id as res.name for res in reviewResults.result"
                                     class="form-control" ng-model="item.review_result"
                                     style="height: 34px; width: 100%">
                                 <option selected disabled value="" ng-show="false"></option>
-                            </select>
+                            </select>-->
                         </div>
                         <div class="col-sm-6">
                             <label class="control-label">Судья</label>
@@ -150,12 +164,12 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label class="control-label">Истец</label>
-                            <input ng-model="item.plaintiff" type="text" class="form-control">
+                            <input ng-model="item.plaintiffs" type="text" class="form-control">
 
                         </div>
                         <div class="col-sm-6">
                             <label class="control-label">Ответчик</label>
-                            <input ng-model="item.defendant" type="text" class="form-control">
+                            <input ng-model="item.defendants" type="text" class="form-control">
 
                         </div>
                     </div>
@@ -197,8 +211,8 @@
 
                     <div class="row">
                         <div class="col-sm-12 text-center">
-                            <button style="margin-top: 10px"
-                                    ng-click="sendResultCivil(item)"
+                            <button ng-disabled="!item" style="margin-top: 10px"
+                                    ng-click="sendResultCivil(item, dateModel)"
                                     class="btn btn-lg btn-primary">
                                 Найти
                             </button>
@@ -232,7 +246,11 @@
                 </div>
             </div>
 
-            <table class="table">
+            <div style="margin-bottom: 0" ng-if="tableData.error_message" class="alert alert-danger" role="alert">
+                Результат не найден. Не удалось вычислить ответ
+            </div>
+
+            <table ng-if="tableData.result" class="table">
                 <thead style="background: cadetblue" class="thead-dark">
                 <tr>
                     <th>Номер дела</th>
@@ -247,12 +265,11 @@
                     <td>{{item.case_number}}</td>
                     <td>{{item.court_name}}</td>
                     <td>{{item.review_result}}</td>
-                    <td>{{item.plaintiff}}</td>
-                    <td>{{item.defendant}}</td>
+                    <td>{{item.plaintiffs}}</td>
+                    <td>{{item.defendants}}</td>
                 </tr>
                 </tbody>
             </table>
-
 
 
         </div>
