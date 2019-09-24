@@ -4,22 +4,25 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Гражданские дела | Defense</title>
+    <title>Гражданское дело</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/new_form.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!--uiSelect-->
     <link rel="stylesheet" href="css/ui-select/select2.css">
     <link rel="stylesheet" href="css/ui-select/selectize.default.css">
     <link rel="stylesheet" href="css/ui-select/select.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!--uiSelect-->
 
     <script src="Scripts/angular.min.js"></script>
     <script src="Scripts/ui-bootstrap.js"></script>
     <script src="controllers/index.js"></script>
+    <script src="controllers/new_form.js"></script>
     <script src="controllers/civil.js"></script>
     <script src="Scripts/jquery-2.2.1.js"></script>
 
@@ -34,19 +37,9 @@
     <!--FileSaver-->
     <script src="Scripts/FileSaver.js"></script>
 
-    <style>
-        .select2 > .select2-choice.ui-select-match {
-            /* Because of the inclusion of Bootstrap */
-            height: 29px;
-        }
 
-        .selectize-control > .selectize-dropdown {
-            top: 36px;
-        }
-    </style>
-
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
+    <!--    <script src="js/yandexMetrics.js"></script>-->
+    <script>
         (function (m, e, t, r, i, k, a) {
             m[i] = m[i] || function () {
                 (m[i].a = m[i].a || []).push(arguments)
@@ -62,134 +55,240 @@
             accurateTrackBounce: true,
             webvisor: true
         });
+
     </script>
     <noscript>
         <div><img src="https://mc.yandex.ru/watch/53897173" style="position:absolute; left:-9999px;" alt=""/></div>
     </noscript>
-    <!-- /Yandex.Metrika counter -->
-
 
     <script src="Scripts/zingchart.min.js"></script>
-    <style>
-        .zc-ref {
-            display: none;
-        }
-
-        zing-grid[loading] {
-            height: 800px;
-        }
-
-        .background {
-            margin: 0;
-        }
-
-        .alert {
-            width: fit-content;
-            padding: 6px 12px;
-            display: inline-block;
-        }
-        #text{
-            color: #fff;
-            text-align: center;
-            text-transform: uppercase;
-        }
-        .follow{
-            color: #fff;
-            font-size: larger;
-        }
-        .input-field{
-            /*display: block;*/
-            /*width: 100%;*/
-            height: 34px;
-            padding: 6px 12px;
-            font-size: 14px;
-            line-height: 1.42857143;
-            color: #555;
-            background-color: #fff;
-            background-image: none;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-        }
-        .btn{
-            padding: 7px 12px;
-        }
-
-        .btn-home{
-
-        }
-    </style>
 
 
 </head>
-<body ng-controller="mainCtrl">
+<body ng-controller="newFormCtrl">
 
 
-<div class="container-fluid main">
+<div class="container-fluid civil">
     <div class="row">
         <h2 class="text-center title" style="display: none;">ПРОВЕРКА ПРИГОВОРА</h2>
-        <div class="form">
-            <form>
+        <div class="formCivil">
+            <form name="formName">
                 <div class="row">
                     <div class="col-sm-12">
-                        <!--<div class="col-sm-6" style="padding: 15px; text-align: center">
-                            <p class="title">Расчет наказания</p>
-                        </div>-->
-
-                        <div class="col-sm-12 text-center" style="padding: 10px 0">
-                            <img src="img/logo.png" alt="logo" style="width: 150px">
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h3 id="text">Данный сервис находится в разработке</h3>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <span class="follow">Подпишитесь и узнавайте новости самыми первыми</span>
-                        <br>
-
-
-
-                        <div class="col-sm-12 text-center">
-                            <br>
-<!--                            <i class="fa fa-envelope icon"></i>-->
-
-                            <input class="input-field" type="text" placeholder="Email" name="email">
-                            <button style="margin: 0 10px" type="button" class="btn btn-md btn-success">Подписаться</button>
-                        </div>
-                        <div class="col-sm-12 text-center">
-                            <br>
-                            <a style="color: #fff;" class="btn-home" href="https://www.zandylyq.kz/"><span class="glyphicon glyphicon-menu-left"></span> Назад к сайту</a>
-
+                        <div class="col-sm-12 text-center" style="padding: 8px; ">
+                            <img src="img/logo.png" alt="logo" style="width: 120px">
                         </div>
                     </div>
                 </div>
 
+                <div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label class="control-label">Номер гражданского дела</label>
+                            <input ng-model="item.case_number" type="text" class="form-control"
+                                   placeholder="Номер дела">
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>От</label>
+                            <input class="form-control" data-format="dd.MM.yyyy" ng-model="dateModel.date_from" type="date">
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label>До</label>
+                            <input class="form-control" data-format="dd.MM.yyyy" ng-model="dateModel.date_to" type="date">
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <label class="control-label">Категория дела</label><br>
+                            <!--<select required ng-options="cat.id as cat.name for cat in caseCategories.result"
+                                    class="form-control" ng-model="item.case_category"
+                                    style="height: 34px; width: 100%">
+                                <option selected disabled value="" ng-show="false"></option>
+                            </select>-->
+                            <ui-select tagging tagging-label="('new')" ng-model="item.category" theme="bootstrap">
+                                <ui-select-match placeholder="Выберите категорию..."><span>{{$select.selected.name}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="cat in caseCategories.result | filter: $select.search">
+                                    <div ng-bind-html="cat.name"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="control-label">Cуд</label><br>
+                            <!--<select required ng-options="court.id as court.name for court in courts.result"
+                                    class="form-control" ng-model="item.court"
+                                    style="height: 34px; width: 100%">
+                                <option selected disabled value="" ng-show="false"></option>
+                            </select>-->
+
+                            <ui-select tagging tagging-label="('new')" ng-model="item.court" theme="bootstrap">
+                                <ui-select-match placeholder="Выберите суд..."><span>{{$select.selected.name}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="court in courts.result | filter: $select.search">
+                                    <div ng-bind-html="court.name"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="control-label">Результат рассмотрения</label><br>
+                            <ui-select tagging tagging-label="('new')" ng-model="item.result" theme="bootstrap">
+                                <ui-select-match placeholder="Выберите результат..."><span>{{$select.selected.name}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="court in reviewResults.result | filter: $select.search">
+                                    <div ng-bind-html="court.name"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                            <!--select required ng-options="res.id as res.name for res in reviewResults.result"
+                                    class="form-control" ng-model="item.review_result"
+                                    style="height: 34px; width: 100%">
+                                <option selected disabled value="" ng-show="false"></option>
+                            </select>-->
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="control-label">Судья</label>
+                            <input ng-model="item.judge" type="text" class="form-control">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="control-label">Истец</label>
+                            <input ng-model="item.plaintiffs" type="text" class="form-control">
+
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="control-label">Ответчик</label>
+                            <input ng-model="item.defendants" type="text" class="form-control">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label class="control-label">Текст решения содержит</label>
+                            <input ng-model="item.result_text_has" type="text" class="form-control"
+                                   placeholder="введеный текст через пробел">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="radio">
+                                <label><input ng-model="item.phrase_rule_type" value="1" type="radio" name="optradio"
+                                              checked>любое
+                                    из перечисленных слов</label>
+                            </div>
+                            <div class="radio">
+                                <label><input ng-model="item.phrase_rule_type" value="2" type="radio" name="optradio">все
+                                    перечисленные слова</label>
+                            </div>
+                            <div class="radio">
+                                <label><input ng-model="item.phrase_rule_type" value="3" type="radio" name="optradio">полностью
+                                    фразу</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label class="control-label">Текст решения не должен содержать слова</label>
+                            <input ng-model="item.result_text_not_has" type="text" class="form-control"
+                                   placeholder="отрицательные слова">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <button ng-disabled="!item" style="margin-top: 10px"
+                                    ng-click="sendResultCivil(item, dateModel)"
+                                    class="btn btn-lg btn-primary">
+                                Найти
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 </div>
 
 
+<script type="text/ng-template" id="myModalCivil.html">
+
+    <div class="modal-content modal-xl">
+        <div class="modal-header">
+            <button style="margin: 6px" type="button" class="close" ng-click="cancel()"><span
+                    aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="exampleModalLabel">Результат анализа</h4>
+
+        </div>
+
+        <div class="modal-body">
+
+            <!-- Preloader -->
+            <div ng-show="loader" id="Load" class="load">
+                <div class="load__container">
+                    <div class="load__animation"></div>
+                    <div class="load__mask"></div>
+                    <span class="load__title">Carregando...</span>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 0" ng-if="tableData.error_message" class="alert alert-danger" role="alert">
+                Результат не найден. Не удалось вычислить ответ
+            </div>
+
+            <table ng-if="tableData.result" class="table">
+                <thead style="background: cadetblue" class="thead-dark">
+                <tr>
+                    <th>Номер дела</th>
+                    <th>Наименование суда</th>
+                    <th>Результат рассмотрения</th>
+                    <th>Истец</th>
+                    <th>Ответчик</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in tableData.result">
+                    <td>{{item.case_number}}</td>
+                    <td>{{item.court_name}}</td>
+                    <td>{{item.review_result}}</td>
+                    <td>{{item.plaintiffs}}</td>
+                    <td>{{item.defendants}}</td>
+                </tr>
+                </tbody>
+            </table>
 
 
-<script>
-    function getYandexMetric() {
-        console.log('it works!');
-        ym(53897173, 'reachGoal', 'zapros');
-        console.log(ym);
-    }
+        </div>
+        <br>
+        <div class="modal-footer">
+            <button class="btn btn-danger" ng-click="cancel()">Закрыть</button>
+        </div>
+
+    </div>
+
 </script>
+
+
+<script src="js/input.js"></script>
+<script src="js/inputFile.js"></script>
+<script src="js/filterable.js"></script>
+<script src="js/getYandexMetric.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
+
 </body>
 </html>
