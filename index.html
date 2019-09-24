@@ -253,7 +253,11 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in tableData.result">
-                    <td>{{item.case_number}}</td>
+                    <td>
+                        <div>
+                            <a href="https://api.zandylyq.kz/v1/civil/document/{{item.doc_id}}" style="cursor: pointer" >{{item.case_number}}</a>
+                        </div>
+                    </td>
                     <td>{{item.court_name}}</td>
                     <td>{{item.review_result}}</td>
                     <td>{{item.plaintiffs}}</td>
