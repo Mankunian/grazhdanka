@@ -96,6 +96,7 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
 
 
     $scope.sendResultCivil = function (item, dateModel) {
+        $scope.object = item;
         var modalInstance = $uibModal.open({
             animation: $scope.animationsEnabled,
             templateUrl: 'myModalCivil.html',
@@ -120,6 +121,7 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
             $scope.selected = selectedItem;
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
+            $scope.object = {};
 
         });
 
@@ -127,6 +129,7 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
             $scope.animationsEnabled = !$scope.animationsEnabled;
         };
     }
+
 });
 
 var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
@@ -137,16 +140,20 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
         value.date_to = date.date_to;
 
 
-        var mm = ((value.date_from.getMonth() < +1) < 10 ? '0' : '') + (value.date_from.getMonth() + 1);
-        var dd = value.date_from.getDate();
-        var yy = value.date_from.getFullYear();
-        value.date_from = yy + '.' + mm + '.' + dd;
+        if (value.date_from) {
+            var mm = ((value.date_from.getMonth() < +1) < 10 ? '0' : '') + (value.date_from.getMonth() + 1);
+            var dd = value.date_from.getDate();
+            var yy = value.date_from.getFullYear();
+            value.date_from = yy + '.' + mm + '.' + dd;
+        }
 
+        if (value.date_to) {
 
-        var mm = ((value.date_to.getMonth() < +1) < 10 ? '0' : '') + (value.date_to.getMonth() + 1);
-        var dd = value.date_to.getDate();
-        var yy = value.date_to.getFullYear();
-        value.date_to = yy + '.' + mm + '.' + dd;
+            var mm = ((value.date_to.getMonth() < +1) < 10 ? '0' : '') + (value.date_to.getMonth() + 1);
+            var dd = value.date_to.getDate();
+            var yy = value.date_to.getFullYear();
+            value.date_to = yy + '.' + mm + '.' + dd;
+        }
 
     }
 
@@ -183,7 +190,7 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
             }
         }).then(function (value) {
             $scope.tableData = value.data;
-            console.log($scope.tableData)
+            console.log($scope.tableData);
         }, function (reason) {
             console.log(reason)
         });
@@ -194,7 +201,14 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
 
 
     $scope.cancel = function () {
+
         $uibModalInstance.dismiss();
+        value.case_number = '';
+        value.court = '';
+        value.category = '';
+        value.result = '';
+        value = {};
+        console.log(value);
     };
 
 };
