@@ -78,7 +78,6 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
     $scope.getReviewResults();
 
 
-
     $scope.item.phrase_rule_type = '1';
     $scope.sendResultCivil = function (item, dateModel) {
         $scope.object = item;
@@ -119,6 +118,8 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
 
 var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
 
+    $scope.page = 1;
+    $scope.itemsPerPage = 10;
 
     if (date) {
         value.date_from = date.date_from;
