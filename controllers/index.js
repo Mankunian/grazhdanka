@@ -2,25 +2,6 @@ var myApp = angular.module('app', ['ui.bootstrap', 'ngSanitize', 'ui.select']);
 
 angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeout, $uibModal, $log) {
 
-
-    /*$scope.sendBtn = function (item) {
-        console.log(item);
-
-        var fd = new FormData();
-        fd.append('file', item.file);
-        $http.post(fd, {
-            transformRequest: angular.identity,
-            headers: {'Content-type': undefined}
-        })
-            .success(function (data) {
-
-            })
-            .error(function (error) {
-
-            })
-    };*/
-
-
     //Список категорий дел
     $scope.item = {};
     $scope.getCaseCategoriesList = function () {
@@ -164,11 +145,11 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
         value.court = value.court.id
     }
 
-    if (value.category) {
-        value.category = value.category.id;
+    if (value.case_category) {
+        value.case_category = value.case_category.id;
     }
-    if (value.result) {
-        value.result = value.result.id;
+    if (value.review_result) {
+        value.review_result = value.review_result.id;
     }
 
     console.log(value);

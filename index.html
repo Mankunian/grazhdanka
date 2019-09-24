@@ -93,12 +93,14 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label>От</label>
-                            <input class="form-control" data-format="dd.MM.yyyy" ng-model="dateModel.date_from" type="date">
+                            <input class="form-control" data-format="dd.MM.yyyy" ng-model="dateModel.date_from"
+                                   type="date">
                         </div>
 
                         <div class="col-sm-6">
                             <label>До</label>
-                            <input class="form-control" data-format="dd.MM.yyyy" ng-model="dateModel.date_to" type="date">
+                            <input class="form-control" data-format="dd.MM.yyyy" ng-model="dateModel.date_to"
+                                   type="date">
                         </div>
                     </div>
 
@@ -106,13 +108,10 @@
 
                         <div class="col-sm-6">
                             <label class="control-label">Категория дела</label><br>
-                            <!--<select required ng-options="cat.id as cat.name for cat in caseCategories.result"
-                                    class="form-control" ng-model="item.case_category"
-                                    style="height: 34px; width: 100%">
-                                <option selected disabled value="" ng-show="false"></option>
-                            </select>-->
-                            <ui-select tagging tagging-label="('new')" ng-model="item.category" theme="bootstrap">
-                                <ui-select-match placeholder="Выберите категорию..."><span>{{$select.selected.name}}</span>
+
+                            <ui-select tagging tagging-label="('new')" ng-model="item.case_category" theme="bootstrap">
+                                <ui-select-match placeholder="Выберите категорию...">
+                                    <span>{{$select.selected.name}}</span>
                                 </ui-select-match>
                                 <ui-select-choices repeat="cat in caseCategories.result | filter: $select.search">
                                     <div ng-bind-html="cat.name"></div>
@@ -121,11 +120,6 @@
                         </div>
                         <div class="col-sm-6">
                             <label class="control-label">Cуд</label><br>
-                            <!--<select required ng-options="court.id as court.name for court in courts.result"
-                                    class="form-control" ng-model="item.court"
-                                    style="height: 34px; width: 100%">
-                                <option selected disabled value="" ng-show="false"></option>
-                            </select>-->
 
                             <ui-select tagging tagging-label="('new')" ng-model="item.court" theme="bootstrap">
                                 <ui-select-match placeholder="Выберите суд..."><span>{{$select.selected.name}}</span>
@@ -141,18 +135,15 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label class="control-label">Результат рассмотрения</label><br>
-                            <ui-select tagging tagging-label="('new')" ng-model="item.result" theme="bootstrap">
-                                <ui-select-match placeholder="Выберите результат..."><span>{{$select.selected.name}}</span>
+                            <ui-select tagging tagging-label="('new')" ng-model="item.review_result" theme="bootstrap">
+                                <ui-select-match placeholder="Выберите результат...">
+                                    <span>{{$select.selected.name}}</span>
                                 </ui-select-match>
                                 <ui-select-choices repeat="court in reviewResults.result | filter: $select.search">
                                     <div ng-bind-html="court.name"></div>
                                 </ui-select-choices>
                             </ui-select>
-                            <!--select required ng-options="res.id as res.name for res in reviewResults.result"
-                                    class="form-control" ng-model="item.review_result"
-                                    style="height: 34px; width: 100%">
-                                <option selected disabled value="" ng-show="false"></option>
-                            </select>-->
+
                         </div>
                         <div class="col-sm-6">
                             <label class="control-label">Судья</label>
@@ -247,7 +238,7 @@
             </div>
 
             <div style="margin-bottom: 0" ng-if="tableData.error_message" class="alert alert-danger" role="alert">
-                Результат не найден. Не удалось вычислить ответ
+                {{tableData.error_message}}
             </div>
 
             <table ng-if="tableData.result" class="table">
@@ -270,6 +261,15 @@
                 </tr>
                 </tbody>
             </table>
+
+
+            <!--<pagination
+                    ng-model="currentPage"
+                    total-items="todos.length"
+                    max-size="maxSize"
+                    boundary-links="true">
+            </pagination>-->
+
 
 
         </div>
