@@ -195,7 +195,7 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
             console.log(reason)
         });
 
-        $uibModalInstance.close();
+        $uibModalInstance.close(console.log('Закрыта модалка'));
     };
     $scope.getResponse();
 
@@ -207,7 +207,6 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
         value.court = '';
         value.category = '';
         value.result = '';
-        value = {};
         console.log(value);
     };
 
