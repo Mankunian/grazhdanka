@@ -78,6 +78,8 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
     $scope.getReviewResults();
 
 
+
+    $scope.item.phrase_rule_type = '1';
     $scope.sendResultCivil = function (item, dateModel) {
         $scope.object = item;
         var modalInstance = $uibModal.open({
