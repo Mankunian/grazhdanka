@@ -1,4 +1,4 @@
-var myApp = angular.module('app', ['ui.bootstrap', 'ngSanitize', 'ui.select']);
+var myApp = angular.module('app', ['ui.bootstrap', 'ngSanitize', 'ui.select', 'dropdown-multiselect']);
 
 angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeout, $uibModal, $log) {
 
@@ -19,7 +19,36 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
             }
         }).then(function (value) {
             $scope.caseCategories = value.data;
-            console.log($scope.caseCategories)
+            console.log($scope.caseCategories.result);
+
+            angular.forEach($scope.caseCategories, function (value) {
+                $scope.configaa = {
+                    options: value,
+                    trackBy: 'id',
+                    displayBy: ['id', 'name'],
+                    divider: ':',
+                    icon: 'glyphicon glyphicon-heart',
+                    displayBadge: true,
+                    height: '200px',
+                    filter: true,
+                    multiSelect: true,
+                    preSelectItem: true,
+                    preSelectAll: false
+                };
+            });
+
+
+            console.log($scope.configaa.options)
+
+            /*angular.forEach($scope.caseCategories.result, function (value) {
+                console.log(value);
+                $scope.caseDropdown = value;
+            })*/
+
+
+
+
+
         }, function (reason) {
             console.log(reason)
         });

@@ -5,7 +5,8 @@
     // 'ngSanitize',
     'ui.select',
     'zingchart-angularjs',
-    'angular.factories'
+    'angular.factories',
+    'dropdown-multiselect'
 ]);
 
 

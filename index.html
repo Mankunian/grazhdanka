@@ -24,12 +24,12 @@
 
     <script src="Scripts/angular.min.js"></script>
     <script src="Scripts/ui-bootstrap.js"></script>
+    <script src="js/angular-dropdownMultiselect.min.js"></script>
     <script src="controllers/index.js"></script>
     <script src="controllers/new_form.js"></script>
     <script src="controllers/civil.js"></script>
     <script src="Scripts/jquery-2.2.1.js"></script>
 
-    <script src="js/angular-dropdownMultiselect.min.js"></script>
 
     <script src="Scripts/angular-sanitize.js"></script>
     <script src="Scripts/angular-route.js"></script>
@@ -115,6 +115,10 @@
 
                         <div class="col-sm-6">
                             <label class="control-label">Категория дела</label><br>
+
+
+<!--                            <dropdown-multiselect dropdown-config="configaa" model="selectedItems"></dropdown-multiselect>-->
+
 
                             <ui-select tagging tagging-label="('new')" ng-model="item.case_category" theme="bootstrap">
                                 <ui-select-match placeholder="Выберите категорию...">
@@ -252,10 +256,10 @@
                 <table ng-if="tableData.result" class="table">
                     <thead style="background: cadetblue" class="thead-dark">
                     <tr>
-                        <th>Номер дела</th>
+                        <th style="width: 150px">Номер дела</th>
                         <th>Наименование суда</th>
                         <th>Результат рассмотрения</th>
-                        <th>Истец</th>
+                        <th style="width: 250px">Истец</th>
                         <th>Ответчик</th>
                     </tr>
                     </thead>
@@ -263,7 +267,7 @@
                     <tr ng-repeat="item in filtered = (tableData.result | limitTo: itemsPerPage: itemsPerPage*(page-1))">
                         <td>
                             <div>
-                                <a href="https://api.zandylyq.kz/v1/civil/document/{{item.doc_id}}" style="cursor: pointer">{{item.case_number}}</a>
+                                <a href="https://api.zandylyq.kz/v1/civil/document/{{item.doc_id}}" style="cursor: pointer">{{item.case_number}}</a><br><span class="reviewDate">{{item.review_date}}</span>
                             </div>
                         </td>
                         <td>{{item.court_name}}</td>
