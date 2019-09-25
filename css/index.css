@@ -586,3 +586,10 @@ tbody tr{
         margin: 7px;
     }
 }
+
+
+.ui-select-choices {
+    min-width: 450px;
+    overflow-x: scroll;
+}
+
