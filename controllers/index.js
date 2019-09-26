@@ -19,7 +19,7 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
             }
         }).then(function (value) {
             $scope.caseCategories = value.data;
-            console.log($scope.caseCategories.result);
+            // console.log($scope.caseCategories.result);
 
             angular.forEach($scope.caseCategories, function (value) {
                 $scope.configaa = {
@@ -36,17 +36,6 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
                     preSelectAll: false
                 };
             });
-
-
-            console.log($scope.configaa.options)
-
-            /*angular.forEach($scope.caseCategories.result, function (value) {
-                console.log(value);
-                $scope.caseDropdown = value;
-            })*/
-
-
-
 
 
         }, function (reason) {
@@ -73,7 +62,7 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
             }
         }).then(function (value) {
             $scope.courts = value.data;
-            console.log($scope.courts)
+            // console.log($scope.courts)
         }, function (reason) {
             console.log(reason)
         });
@@ -99,7 +88,7 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
             }
         }).then(function (value) {
             $scope.reviewResults = value.data;
-            console.log($scope.reviewResults)
+            // console.log($scope.reviewResults)
         }, function (reason) {
             console.log(reason)
         });
@@ -206,6 +195,16 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
         }).then(function (value) {
             $scope.tableData = value.data;
             console.log($scope.tableData);
+
+
+            angular.forEach($scope.tableData.result, function (value) {
+                if (value.defendants) {
+                    value.defendants = value.defendants.replace(/,/gi, " \n");
+
+                }
+
+
+            })
         }, function (reason) {
             console.log(reason)
         });
