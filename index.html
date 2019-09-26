@@ -264,26 +264,52 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="item in filtered = (tableData.result | limitTo: itemsPerPage: itemsPerPage*(page-1))">
+                    <tr  class="btn_show" ng-repeat="item in filtered = (tableData.result )">
                         <td>
                             <div>
                                 <a href="https://api.zandylyq.kz/v1/civil/document/{{item.doc_id}}" style="cursor: pointer">{{item.case_number}}</a><br><span class="reviewDate">{{item.review_date}}</span>
                             </div>
                         </td>
-                        <td>{{item.court_name}}</td>
+                        <td>
+                            {{item.court_name}}
+                        <div>
+                            <button ng-click="showSub(item);" class="btn">Информация</button>
+                        </div>
+                        </td>
                         <td>{{item.review_result}}</td>
                         <td>{{item.plaintiffs}}</td>
                         <td>{{item.defendants}}</td>
                     </tr>
+
+
+
+
+                    <tr   class="hidden_row">
+                        <td>4 Sammantha</td>
+                        <td>Sample</td>
+                        <td>Sample</td>
+                    </tr>
+
                     </tbody>
                 </table>
             </div>
 
 
             <div class="text-center">
-                <uib-pagination class="pagination-sm pagination" total-items="tableData.result.length" ng-model="page"
-                                ng-change="pageChanged()" previous-text="&lsaquo;" max-size="3" boundary-link-numbers="true"
-                                num-pages="numPages" next-text="&rsaquo;" items-per-page="itemsPerPage"></uib-pagination>
+                <uib-pagination class="pagination-sm pagination"
+                                current-page="currentPage"
+                                total-items="200"
+                                ng-model="item.page"
+                                ng-change="pageChanged(item)"
+                                previous-text="&lsaquo;"
+                                max-size= "maxSize"
+                                boundary-link-numbers="true"
+                                num-pages="numPages"
+                                next-text="&rsaquo;"
+                                items-per-page="50">
+
+                </uib-pagination>
+
             </div>
 
 

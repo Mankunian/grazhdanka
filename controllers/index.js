@@ -136,8 +136,10 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
 
 var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
 
-    $scope.page = 1;
-    $scope.itemsPerPage = 10;
+    $scope.currentPage = 1;
+    /*$scope.numPages = 10;
+    $scope.maxSize = 10;*/
+
 
     if (date) {
         value.date_from = date.date_from;
@@ -197,6 +199,15 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
             console.log($scope.tableData);
 
 
+            var dataLength = $scope.tableData.result.length;
+
+            if (dataLength === 51) {
+                console.log('Show next page');
+
+
+            }
+
+
             angular.forEach($scope.tableData.result, function (value) {
                 if (value.defendants) {
                     value.defendants = value.defendants.replace(/,/gi, " \n");
@@ -212,6 +223,63 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
         $uibModalInstance.close(console.log('Закрыта модалка'));
     };
     $scope.getResponse();
+
+
+    $scope.pageChanged = function (page) {
+        console.log(page);
+        $http({
+            url: 'https://api.zandylyq.kz/v1/civil/request?page=' + $scope.item.page,
+            method: 'POST',
+            data: value,
+            cache: false,
+            contentType: false,
+            async: true,
+            processData: false,
+            headers: {
+                'Access-Control-Allow-Origin': true,
+                'Content-Type': 'application/json; charset=utf-8',
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        }).then(function (value) {
+            $scope.tableData = value.data;
+            console.log($scope.tableData.result.length);
+
+            var dataLength = $scope.tableData.result.length;
+
+            if (dataLength === 51) {
+                console.log('Show next page');
+                page++
+            }
+
+
+            angular.forEach($scope.tableData.result, function (value) {
+                if (value.defendants) {
+                    value.defendants = value.defendants.replace(/,/gi, " \n");
+
+                }
+
+
+            })
+        }, function (reason) {
+            console.log(reason)
+        });
+
+    };
+
+
+    $scope.showSub = function (item) {
+        console.log(item.doc_id);
+
+        $http({
+            url: 'https://api.zandylyq.kz/v1/civil/information/'+item.doc_id,
+            method: 'GET'
+
+        }).then(function (value) {
+            console.log(value)
+        }, function (reason) {
+            console.log(reason)
+        })
+    };
 
 
     $scope.cancel = function () {
