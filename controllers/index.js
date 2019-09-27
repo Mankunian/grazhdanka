@@ -137,8 +137,13 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
 var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
 
     $scope.currentPage = 1;
-    /*$scope.numPages = 10;
-    $scope.maxSize = 10;*/
+    $scope.itemsPage = 50;
+    $scope.maxSize = 6;
+
+
+    $scope.setPage = function (pageNo) {
+        $scope.currentPage = pageNo;
+    };
 
 
     if (date) {
@@ -175,7 +180,7 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
         value.review_result = value.review_result.id;
     }
 
-    console.log(value);
+    // console.log(value);
 
 
     $scope.getResponse = function () {
@@ -196,16 +201,20 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
             }
         }).then(function (value) {
             $scope.tableData = value.data;
-            console.log($scope.tableData);
 
 
-            var dataLength = $scope.tableData.result.length;
+            $scope.dataLength = $scope.tableData.total;
 
-            if (dataLength === 51) {
-                console.log('Show next page');
+            if ($scope.dataLength === 51) {
+                angular.forEach($scope.dataLength, function (value) {
+                    console.log(value);
+                    $scope.dataLength = $scope.dataLength + 51;
+                })
 
 
             }
+
+            console.log($scope.dataLength);
 
 
             angular.forEach($scope.tableData.result, function (value) {
@@ -220,12 +229,14 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
             console.log(reason)
         });
 
-        $uibModalInstance.close(console.log('Закрыта модалка'));
+        $uibModalInstance.close();
     };
     $scope.getResponse();
 
 
     $scope.pageChanged = function (page) {
+
+
         console.log(page);
         $http({
             url: 'https://api.zandylyq.kz/v1/civil/request?page=' + $scope.item.page,
@@ -242,14 +253,20 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
             }
         }).then(function (value) {
             $scope.tableData = value.data;
-            console.log($scope.tableData.result.length);
 
-            var dataLength = $scope.tableData.result.length;
 
-            if (dataLength === 51) {
-                console.log('Show next page');
-                page++
+
+
+            $scope.dataLength += 51;
+            console.log($scope.dataLength);
+
+
+            /*if ($scope.dataLength === 51) {
+                $scope.dataLength = $scope.dataLength + 51;
             }
+
+            console.log($scope.dataLength);
+*/
 
 
             angular.forEach($scope.tableData.result, function (value) {
@@ -271,7 +288,7 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date) {
         console.log(item.doc_id);
 
         $http({
-            url: 'https://api.zandylyq.kz/v1/civil/information/'+item.doc_id,
+            url: 'https://api.zandylyq.kz/v1/civil/information/' + item.doc_id,
             method: 'GET'
 
         }).then(function (value) {
