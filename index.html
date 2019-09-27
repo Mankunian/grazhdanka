@@ -250,10 +250,11 @@
                 {{tableData.error_message}}
             </div>
 
-            <div style="overflow-x: scroll; border: none" class="panel panel-primary">
-                <table ng-if="tableData.result" class="table">
+            <div ng-if="tableData.result" style="overflow-x: scroll; border: none" class="panel panel-primary">
+                <table  class="table">
                     <thead style="background: cadetblue" class="thead-dark">
                     <tr>
+                        <th></th>
                         <th style="width: 150px">Номер дела</th>
                         <th>Наименование суда</th>
                         <th>Результат рассмотрения</th>
@@ -265,15 +266,17 @@
                     <tr class="btn_show" ng-repeat="item in filtered = (tableData.result )">
                         <td>
                             <div>
+                                <button ng-click="showSub(item);" class="btn-sm btn-primary">Подробнее</button>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
                                 <a href="https://api.zandylyq.kz/v1/civil/document/{{item.doc_id}}"
                                    style="cursor: pointer">{{item.case_number}}</a><br><span class="reviewDate">{{item.review_date}}</span>
                             </div>
                         </td>
                         <td>
                             {{item.court_name}}
-                            <div>
-                                <button ng-click="showSub(item);" class="btn">Информация</button>
-                            </div>
                         </td>
                         <td>{{item.review_result}}</td>
                         <td>{{item.plaintiffs}}</td>
@@ -284,7 +287,7 @@
             </div>
 
 
-            <div class="text-center">
+            <div ng-if="tableData.result" class="text-center">
                 <uib-pagination class="pagination-sm pagination"
                                 current-page="currentPage"
                                 total-items="dataLength"
@@ -300,6 +303,38 @@
                 </uib-pagination>
 
             </div>
+
+
+        </div>
+        <br>
+        <div class="modal-footer">
+            <button class="btn btn-danger" ng-click="cancel()">Закрыть</button>
+        </div>
+
+    </div>
+
+</script>
+<script type="text/ng-template" id="myModalInfo.html">
+
+    <div class="modal-content modal-xl">
+        <div class="modal-header">
+            <button style="margin: 6px" type="button" class="close" ng-click="cancel()"><span
+                    aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="exampleModalLabel1">Результат</h4>
+
+        </div>
+
+        <div class="modal-body">
+
+            <!-- Preloader -->
+            <div ng-show="loader" id="Load" class="load">
+                <div class="load__container">
+                    <div class="load__animation"></div>
+                    <div class="load__mask"></div>
+                    <span class="load__title">Carregando...</span>
+                </div>
+            </div>
+
 
 
         </div>
