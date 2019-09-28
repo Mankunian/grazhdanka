@@ -111,7 +111,7 @@
 
                     <div class="row">
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <label class="control-label">Категория дела</label><br>
 
 
@@ -122,12 +122,13 @@
                                 <ui-select-match placeholder="Выберите категорию...">
                                     <span>{{$select.selected.name}}</span>
                                 </ui-select-match>
-                                <ui-select-choices repeat="cat in caseCategories.result | filter: $select.search">
+                                <ui-select-choices style="overflow-x: scroll"
+                                                   repeat="cat in caseCategories.result | filter: $select.search">
                                     <div ng-bind-html="cat.name"></div>
                                 </ui-select-choices>
                             </ui-select>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <label class="control-label">Cуд</label><br>
 
                             <ui-select tagging tagging-label="('new')" ng-model="item.court" theme="bootstrap">
@@ -142,7 +143,7 @@
 
 
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <label class="control-label">Результат рассмотрения</label><br>
                             <ui-select tagging tagging-label="('new')" ng-model="item.review_result" theme="bootstrap">
                                 <ui-select-match placeholder="Выберите результат...">
@@ -154,7 +155,7 @@
                             </ui-select>
 
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <label class="control-label">Судья</label>
                             <input ng-model="item.judge" type="text" class="form-control">
                         </div>
@@ -216,6 +217,14 @@
                                     class="btn btn-lg btn-primary">
                                 Найти
                             </button>
+
+                            <button ng-disabled="!item"
+                                    ng-click="clearForm(item, dateModel)"
+                                    class="btn btn-lg btn-danger"
+                                    style="margin-top: 10px"
+                            >
+                                Очистить
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -251,7 +260,7 @@
             </div>
 
             <div ng-if="tableData.result" style="overflow-x: scroll; border: none" class="panel panel-primary">
-                <table  class="table">
+                <table class="table">
                     <thead style="background: cadetblue" class="thead-dark">
                     <tr>
                         <th></th>
@@ -334,7 +343,6 @@
                     <span class="load__title">Carregando...</span>
                 </div>
             </div>
-
 
 
         </div>

@@ -132,6 +132,13 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
         };
     }
 
+
+    $scope.clearForm = function (item) {
+
+        $scope.item = {};
+        $scope.dateModel = {};
+    }
+
 });
 
 var modalCivil = function ($scope, $uibModalInstance, $http, value, date, $uibModal, $log) {
@@ -330,6 +337,9 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date, $uibMo
         value.category = '';
         value.result = '';
         console.log(value);
+
+        /*$scope.dateModel = {};
+        $scope.item = {};*/
     };
 
 };
@@ -337,9 +347,6 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date, $uibMo
 
 var modalInfo = function ($scope, $uibModalInstance, $http, value, $uibModal) {
     console.log('second modal');
-
-
-
 
 
     $scope.cancel = function () {
