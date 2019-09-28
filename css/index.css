@@ -601,3 +601,8 @@ tbody tr{
     border-radius: 2px;
 }*/
 
+.infoIcon{
+    width: 30px;
+    margin: 5px;
+    cursor: pointer;
+}

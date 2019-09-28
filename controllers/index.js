@@ -317,15 +317,6 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date, $uibMo
         };
 
 
-        $http({
-            url: 'https://api.zandylyq.kz/v1/civil/information/' + item.doc_id,
-            method: 'GET'
-
-        }).then(function (value) {
-            console.log(value.data.result)
-        }, function (reason) {
-            console.log(reason)
-        })
     };
 
 
@@ -346,8 +337,24 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date, $uibMo
 
 
 var modalInfo = function ($scope, $uibModalInstance, $http, value, $uibModal) {
-    console.log('second modal');
+    console.log(value);
 
+
+    $scope.getInfoByCase = function () {
+        $http({
+            url: 'https://api.zandylyq.kz/v1/civil/information/' + value.doc_id,
+            method: 'GET'
+
+        }).then(function (value) {
+            console.log(value.data.result);
+
+            $scope.infoByCase = value.data.result;
+        }, function (reason) {
+            console.log(reason)
+        })
+    };
+
+    $scope.getInfoByCase();
 
     $scope.cancel = function () {
 

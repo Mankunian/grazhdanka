@@ -263,21 +263,18 @@
                 <table class="table">
                     <thead style="background: cadetblue" class="thead-dark">
                     <tr>
-                        <th></th>
+
                         <th style="width: 150px">Номер дела</th>
                         <th>Наименование суда</th>
                         <th>Результат рассмотрения</th>
                         <th style="width: 250px">Истец</th>
                         <th style="width: 300px">Ответчик</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr class="btn_show" ng-repeat="item in filtered = (tableData.result )">
-                        <td>
-                            <div>
-                                <button ng-click="showSub(item);" class="btn-sm btn-primary">Подробнее</button>
-                            </div>
-                        </td>
+
                         <td>
                             <div>
                                 <a href="https://api.zandylyq.kz/v1/civil/document/{{item.doc_id}}"
@@ -290,6 +287,11 @@
                         <td>{{item.review_result}}</td>
                         <td>{{item.plaintiffs}}</td>
                         <td>{{item.defendants}}</td>
+                        <td>
+                            <div  ng-click="showSub(item);" >
+                                <img class="infoIcon" src="img/info.png" alt="info">
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -342,6 +344,38 @@
                     <div class="load__mask"></div>
                     <span class="load__title">Carregando...</span>
                 </div>
+            </div>
+
+
+            <div class="table">
+                <table class="table">
+                    <thead style="background: cadetblue" class="thead-dark">
+                    <tr>
+
+                        <th style="width: 150px">Тип инстанции</th>
+                        <th>Номер дела</th>
+                        <th>Наименование суда</th>
+                        <th>Результат рассмотрения</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="btn_show" ng-repeat="item in filtered = (infoByCase )">
+                        <td>
+                           {{item.instance_type}}
+                        </td>
+                        <td>
+                            <div>
+                                <a href="https://api.zandylyq.kz/v1/civil/document/{{item.id}}"
+                                   style="cursor: pointer">{{item.case_number}}</a><br><span class="reviewDate">{{item.review_date}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            {{item.court_name}}
+                        </td>
+                        <td>{{item.review_result}}</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
 
 
