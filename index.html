@@ -6,18 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Гражданское дело</title>
 
-    <!-- Bootstrap -->
+
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/new_form.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!--uiSelect-->
     <link rel="stylesheet" href="css/ui-select/select2.css">
     <link rel="stylesheet" href="css/ui-select/selectize.default.css">
     <link rel="stylesheet" href="css/ui-select/select.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <!--uiSelect-->
 
 
     <link rel="stylesheet" href="css/angular-dropdownMultiselect.css"/>
@@ -30,44 +28,29 @@
     <script src="controllers/civil.js"></script>
     <script src="Scripts/jquery-2.2.1.js"></script>
 
-
     <script src="Scripts/angular-sanitize.js"></script>
     <script src="Scripts/angular-route.js"></script>
 
-    <!--uiSelect-->
     <script src="Scripts/ui-select/select.min.js"></script>
-    <!--uiSelect-->
-
-
-    <!--FileSaver-->
     <script src="Scripts/FileSaver.js"></script>
+    <script src="Scripts/zingchart.min.js"></script>
 
 
-    <!--    <script src="js/yandexMetrics.js"></script>-->
-    <script>
-        (function (m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () {
-                (m[i].a = m[i].a || []).push(arguments)
-            };
-            m[i].l = 1 * new Date();
-            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-        })
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
         (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
         ym(55544833, "init", {
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true,
-            webvisor: true
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
         });
-
     </script>
-    <noscript>
-        <div><img src="https://mc.yandex.ru/watch/53897173" style="position:absolute; left:-9999px;" alt=""/></div>
-    </noscript>
-
-    <script src="Scripts/zingchart.min.js"></script>
-
+    <noscript><div><img src="https://mc.yandex.ru/watch/55544833" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 
 </head>
 <body ng-controller="newFormCtrl">
@@ -289,7 +272,7 @@
                         <td>{{item.plaintiffs}}</td>
                         <td>{{item.defendants}}</td>
                         <td>
-                            <div  ng-click="showSub(item);" >
+                            <div ng-click="showSub(item);">
                                 <img class="infoIcon" src="img/info.png" alt="info">
                             </div>
                         </td>
@@ -362,7 +345,7 @@
                     <tbody>
                     <tr class="btn_show" ng-repeat="item in filtered = (infoByCase )">
                         <td>
-                           {{item.instance_type}}
+                            {{item.instance_type}}
                         </td>
                         <td>
                             <div>
