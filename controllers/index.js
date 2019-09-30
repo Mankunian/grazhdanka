@@ -137,6 +137,8 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
 
         $scope.item = {};
         $scope.dateModel = {};
+
+        $scope.item.phrase_rule_type = '1';
     }
 
 });
