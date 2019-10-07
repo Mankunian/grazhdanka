@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 
+    <!--    <link rel="stylesheet" href="css/bootstrap-combined.min.css">-->
+
+
     <link rel="stylesheet" href="css/angular-dropdownMultiselect.css"/>
 
     <script src="Scripts/angular.min.js"></script>
@@ -36,22 +39,37 @@
     <script src="Scripts/zingchart.min.js"></script>
 
 
+    <script src="Scripts/multiselect.js"></script>
 
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+
+    <link rel="stylesheet" href="https://rawgit.com/rajush/angular-dropdown-multiselect/master/dist/angular-dropdownMultiselect.min.css" />
+
+
+    <script src="https://rawgit.com/rajush/angular-dropdown-multiselect/master/dist/angular-dropdownMultiselect.min.js"></script>
+
+
+
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
         (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
         ym(55544833, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
         });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/55544833" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/55544833" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
+
 
 </head>
 <body ng-controller="newFormCtrl">
@@ -99,8 +117,7 @@
                             <label class="control-label">Категория дела</label><br>
 
 
-                            <!--                            <dropdown-multiselect dropdown-config="configaa" model="selectedItems"></dropdown-multiselect>-->
-
+<!--                            <dropdown-multiselect dropdown-config="config" model="selectedItems"></dropdown-multiselect>-->
 
                             <ui-select tagging tagging-label="('new')" ng-model="item.case_category" theme="bootstrap">
                                 <ui-select-match placeholder="Выберите категорию...">

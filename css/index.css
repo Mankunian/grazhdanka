@@ -298,39 +298,7 @@ input[type=checkbox]:checked + label:before {
 }
 
 
-/*Table*/
 
-/*.filterable {
-    margin-top: 15px;
-}
-
-.filterable .panel-heading .pull-right {
-    margin-top: -20px;
-}
-
-.filterable .filters input[disabled] {
-    background-color: transparent;
-    border: none;
-    cursor: auto;
-    box-shadow: none;
-    padding: 0;
-    height: auto;
-}
-
-.filterable .filters input[disabled]::-webkit-input-placeholder {
-    color: #333;
-}
-
-.filterable .filters input[disabled]::-moz-placeholder {
-    color: #333;
-}
-
-.filterable .filters input[disabled]:-ms-input-placeholder {
-    color: #333;
-}*/
-
-
-/*table*/
 .table {
     width: 100%;
     /*display: block;*/
@@ -345,28 +313,13 @@ input[type=checkbox]:checked + label:before {
 }
 
 
-/*Modal windows style*/
-
-
-/*.modal-header {
-    background: #262626;
-    border: #262626;
-    color: #F0AE24;
-}
-
-.close {
-    color: #F0AE24;
-    opacity: 1;
-}*/
-
 
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    /*background-color: #333333;*/
-    /*text-transform: uppercase;*/
+
 }
 
 li {
@@ -471,22 +424,7 @@ li a:hover {
     background-size: contain;
 }
 
-/*table th{
-    border-bottom: 5px solid #F0AE24;
-}
 
-tbody tr{
-    background: #F7D691;
-    line-height:30px;
-}
-
-.panel-primary{
-    border: none;
-}
-
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
-    border-top: 4px solid #ffffff;
-}*/
 
 
 
@@ -594,15 +532,51 @@ tbody tr{
 }
 
 
-/*.reviewDate{
-    background: #1b6d85;
-    color: #fff;
-    padding: 4px;
-    border-radius: 2px;
-}*/
 
 .infoIcon{
     width: 30px;
     margin: 5px;
     cursor: pointer;
+}
+
+
+/*MultiSelect*/
+
+multiselect {
+    display:block;
+}
+multiselect .btn {
+    width: 100%;
+    background-color: #FFF;
+}
+multiselect .btn.error{
+    border: 1px solid #da4f49 !important;
+}
+multiselect .dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+}
+multiselect .dropdown-menu {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2px;
+}
+multiselect .dropdown-menu > li > a {
+    padding: 3px 10px;
+    /*float: left;*/
+    cursor:pointer;
+}
+
+.dropdown-menu input{
+    width: 100%;
+    padding: 5px;
+}
+
+
+.btn-link:focus, .btn-link:hover{
+    text-decoration: underline;
+}
+
+.btn .caret{
+    margin: 5px 0;
 }

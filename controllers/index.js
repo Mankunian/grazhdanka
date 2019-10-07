@@ -2,8 +2,10 @@ var myApp = angular.module('app', ['ui.bootstrap', 'ngSanitize', 'ui.select', 'd
 
 angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeout, $uibModal, $log) {
 
+
     //Список категорий дел
     $scope.item = {};
+    $scope.selectedCase = [];
     $scope.getCaseCategoriesList = function () {
         $http({
             url: 'https://api.zandylyq.kz/v1/civil/case-categories',
@@ -19,11 +21,14 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
             }
         }).then(function (value) {
             $scope.caseCategories = value.data;
-            // console.log($scope.caseCategories.result);
-
             angular.forEach($scope.caseCategories, function (value) {
-                $scope.configaa = {
-                    options: value,
+                console.log(value);
+
+                var options = value;
+
+
+                $scope.config = {
+                    options: options,
                     trackBy: 'id',
                     displayBy: ['id', 'name'],
                     divider: ':',
@@ -35,7 +40,7 @@ angular.module("app").controller("newFormCtrl", function ($scope, $http, $timeou
                     preSelectItem: true,
                     preSelectAll: false
                 };
-            });
+            })
 
 
         }, function (reason) {
@@ -156,18 +161,34 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date, $uibMo
 
 
         if (value.date_from) {
-            var mm = ((value.date_from.getMonth() < +1) < 10 ? '0' : '') + (value.date_from.getMonth() + 1);
-            var dd = value.date_from.getDate();
+            /* var mm = ((value.date_from.getMonth() < +1) < 10 ? '0' : '') + (value.date_from.getMonth() + 1);
+             var dd = value.date_from.getDate();
+             var yy = value.date_from.getFullYear();
+             value.date_from = yy + '.' + mm + '.' + dd;*/
+
+
+            var dd = ('0' + value.date_from.getDate()).slice(-2);
+            var mm = ('0' + (value.date_from.getMonth() + 1)).slice(-2);
             var yy = value.date_from.getFullYear();
+
             value.date_from = yy + '.' + mm + '.' + dd;
         }
 
         if (value.date_to) {
 
-            var mm = ((value.date_to.getMonth() < +1) < 10 ? '0' : '') + (value.date_to.getMonth() + 1);
-            var dd = value.date_to.getDate();
+
+            /* var mm = ((value.date_to.getMonth() < +1) < 10 ? '0' : '') + (value.date_to.getMonth() + 1);
+             var dd = value.date_to.getDate();
+             var yy = value.date_to.getFullYear();
+             value.date_to = yy + '.' + mm + '.' + dd;*/
+
+
+            var dd = ('0' + value.date_to.getDate()).slice(-2);
+            var mm = ('0' + (value.date_to.getMonth() + 1)).slice(-2);
             var yy = value.date_to.getFullYear();
             value.date_to = yy + '.' + mm + '.' + dd;
+
+
         }
 
     }
@@ -217,18 +238,6 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date, $uibMo
 
 
             }
-
-            console.log($scope.dataLength);
-
-
-            /*angular.forEach($scope.tableData.result, function (value) {
-                if (value.defendants) {
-                    value.defendants = value.defendants.replace(/,/gi, " || ");
-
-                }
-
-
-            })*/
         }, function (reason) {
             console.log(reason)
         });
@@ -329,10 +338,6 @@ var modalCivil = function ($scope, $uibModalInstance, $http, value, date, $uibMo
         value.court = '';
         value.category = '';
         value.result = '';
-        console.log(value);
-
-        /*$scope.dateModel = {};
-        $scope.item = {};*/
     };
 
 };
