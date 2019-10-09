@@ -89,11 +89,42 @@
                 </div>
 
                 <div>
+
+
                     <div class="row">
                         <div class="col-sm-12">
-                            <label class="control-label">Номер гражданского дела</label>
-                            <input ng-model="item.case_number" type="text" class="form-control"
-                                   placeholder="Номер дела">
+                            <label class="control-label">Текст решения содержит</label>
+                            <input ng-model="item.result_text_has" type="text" class="form-control"
+                                   placeholder="введеный текст через пробел">
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="radio">
+                                <label><input ng-model="item.phrase_rule_type" value="1" type="radio" name="optradio"
+                                              checked>любое
+                                    из перечисленных слов</label>
+                            </div>
+                            <div class="radio">
+                                <label><input ng-model="item.phrase_rule_type" value="2" type="radio" name="optradio">все
+                                    перечисленные слова</label>
+                            </div>
+                            <div class="radio">
+                                <label><input ng-model="item.phrase_rule_type" value="3" type="radio" name="optradio">полностью
+                                    фразу</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label class="control-label">Текст решения не должен содержать слова</label>
+                            <input ng-model="item.result_text_not_has" type="text" class="form-control"
+                                   placeholder="отрицательные слова">
                         </div>
                     </div>
 
@@ -111,14 +142,15 @@
                         </div>
                     </div>
 
+
+
+
+
+
                     <div class="row">
 
                         <div class="col-sm-12">
                             <label class="control-label">Категория дела</label><br>
-
-
-<!--                            <dropdown-multiselect dropdown-config="config" model="selectedItems"></dropdown-multiselect>-->
-
                             <ui-select tagging tagging-label="('new')" ng-model="item.case_category" theme="bootstrap">
                                 <ui-select-match placeholder="Выберите категорию...">
                                     <span>{{$select.selected.name}}</span>
@@ -176,39 +208,19 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <label class="control-label">Текст решения содержит</label>
-                            <input ng-model="item.result_text_has" type="text" class="form-control"
-                                   placeholder="введеный текст через пробел">
-                        </div>
-                    </div>
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="radio">
-                                <label><input ng-model="item.phrase_rule_type" value="1" type="radio" name="optradio"
-                                              checked>любое
-                                    из перечисленных слов</label>
-                            </div>
-                            <div class="radio">
-                                <label><input ng-model="item.phrase_rule_type" value="2" type="radio" name="optradio">все
-                                    перечисленные слова</label>
-                            </div>
-                            <div class="radio">
-                                <label><input ng-model="item.phrase_rule_type" value="3" type="radio" name="optradio">полностью
-                                    фразу</label>
-                            </div>
+                            <label class="control-label">Номер гражданского дела</label>
+                            <input ng-model="item.case_number" type="text" class="form-control"
+                                   placeholder="Номер дела">
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <label class="control-label">Текст решения не должен содержать слова</label>
-                            <input ng-model="item.result_text_not_has" type="text" class="form-control"
-                                   placeholder="отрицательные слова">
-                        </div>
-                    </div>
+
+
+
+
 
 
                     <div class="row">
