@@ -42,11 +42,11 @@
     <script src="Scripts/multiselect.js"></script>
 
 
-    <link rel="stylesheet" href="https://rawgit.com/rajush/angular-dropdown-multiselect/master/dist/angular-dropdownMultiselect.min.css" />
+    <link rel="stylesheet"
+          href="https://rawgit.com/rajush/angular-dropdown-multiselect/master/dist/angular-dropdownMultiselect.min.css"/>
 
 
     <script src="https://rawgit.com/rajush/angular-dropdown-multiselect/master/dist/angular-dropdownMultiselect.min.js"></script>
-
 
 
     <script type="text/javascript">
@@ -71,6 +71,7 @@
     </noscript>
 
 
+    <script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"></script>
 </head>
 <body ng-controller="newFormCtrl">
 
@@ -98,8 +99,6 @@
                                    placeholder="введеный текст через пробел. Например: Договор банк кредит">
                         </div>
                     </div>
-
-
 
 
                     <div class="row">
@@ -141,10 +140,6 @@
                                    type="date">
                         </div>
                     </div>
-
-
-
-
 
 
                     <div class="row">
@@ -218,11 +213,6 @@
                     </div>
 
 
-
-
-
-
-
                     <div class="row">
                         <div class="col-sm-12 text-center">
                             <button onclick=" ym(55544833, 'reachGoal', 'zapros');"
@@ -239,6 +229,27 @@
                             >
                                 Очистить
                             </button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12" >
+                            <div class="pull-right" style="display: inline-flex;">
+                                <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.civil.zandylyq.kz%2F&layout=button&size=small&width=95&height=20&appId"
+                                        width="100" height="30" style="border:none;overflow:hidden" scrolling="no"
+                                        frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+
+                                <script type="text/javascript">
+                                    document.write(VK.Share.button({
+                                        url: "http://civil.zandylyq.kz",
+                                        image: 'http://civil.zandylyq.kz/img/logo.jpg'
+                                    }, {
+                                        type: "round_nocount",
+                                        text: "Поделиться"
+                                    }));
+                                </script>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -307,7 +318,7 @@
                         <td>
                             <div ng-click="showSub(item);">
                                 <img uib-tooltip="Просмотр" class="infoIcon" src="img/info.png" alt="info">
-<!--                                <button class="btn btn-info">Просмотр <i class="fa fa-info"></i></button>-->
+                                <!--                                <button class="btn btn-info">Просмотр <i class="fa fa-info"></i></button>-->
                             </div>
                         </td>
                     </tr>
