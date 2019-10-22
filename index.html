@@ -290,9 +290,12 @@
                     <tr class="btn_show" ng-repeat="item in filtered = (tableData.result )">
 
                         <td>
-                            <div>
-                                <a href="https://api.zandylyq.kz/v1/civil/document/{{item.doc_id}}"
-                                   style="cursor: pointer">{{item.case_number}}</a><br><span class="reviewDate">{{item.review_date}}</span>
+                            <div class="text-center">
+                                <a class="btn btn-case" href="https://api.zandylyq.kz/v1/civil/document/{{item.doc_id}}"
+                                   style="cursor: pointer">{{item.case_number}}</a><br>
+                                <div class="text-center">
+                                    <span class="reviewDate">{{item.review_date}}</span>
+                                </div>
                             </div>
                         </td>
                         <td>
@@ -303,7 +306,8 @@
                         <td>{{item.defendants}}</td>
                         <td>
                             <div ng-click="showSub(item);">
-                                <img class="infoIcon" src="img/info.png" alt="info">
+                                <img uib-tooltip="Просмотр" class="infoIcon" src="img/info.png" alt="info">
+<!--                                <button class="btn btn-info">Просмотр <i class="fa fa-info"></i></button>-->
                             </div>
                         </td>
                     </tr>
@@ -379,8 +383,11 @@
                         </td>
                         <td>
                             <div>
-                                <a href="https://api.zandylyq.kz/v1/civil/document/{{item.id}}"
-                                   style="cursor: pointer">{{item.case_number}}</a><br><span class="reviewDate">{{item.review_date}}</span>
+                                <a class="btn btn-case" href="https://api.zandylyq.kz/v1/civil/document/{{item.id}}"
+                                   style="cursor: pointer">{{item.case_number}}</a><br>
+                                <div class="text-center">
+                                    <span class="reviewDate">{{item.review_date}}</span>
+                                </div>
                             </div>
                         </td>
                         <td>
